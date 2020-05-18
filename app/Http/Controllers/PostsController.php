@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,7 +21,6 @@ class PostsController extends Controller
             'posts.index',
             [
                 'posts' => $posts,
-                'some' => 'SOme data'
             ]
         );
     }
@@ -30,14 +30,18 @@ class PostsController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tag::all();
         return view('posts.create', [
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 
 
     public function store(PostStoreRequest $request)
     {
+
+        // dd($request->all());
 
         //saves the image uploaded and get the path
         $image = $request->file('image')->store('images', 'public');
@@ -52,11 +56,11 @@ class PostsController extends Controller
             'category_id' => $request->category
         ]);
 
+        //dd($post->tags());
 
-
-        // if ($request->tags) {
-        //     $post->tags()->attach($request->tags);
-        // }
+        if (isset($request->tags)) {
+            $post->tags()->attach($request->tags);
+        }
 
         session()->flash('success', 'Post created successfully.');
         return redirect(route('posts.index'));
@@ -66,12 +70,14 @@ class PostsController extends Controller
     public function edit($id)
     {
         $categories = Category::all();
+        $tags = Tag::all();
         $post = Post::find($id);
         return view(
             'posts.edit',
             [
                 'post' => $post,
-                'categories' => $categories
+                'categories' => $categories,
+                'tags' => $tags
             ]
         );
     }
@@ -92,6 +98,15 @@ class PostsController extends Controller
         $post->description = $request->description;
         $post->content = $request->content;
         $post->category_id = $request->category;
+
+        //sync the tags of the post
+        if (isset($request->tags)) {
+            $post->tags()->sync($request->tags);
+        } else {
+            $post->tags()->detach();
+        }
+
+
         $post->save();
 
         session()->flash('success', 'Post updated successfully.');
@@ -103,6 +118,7 @@ class PostsController extends Controller
     public function delete($id)
     {
         $post = Post::find($id);
+        $post->tags()->detach();
         $post->delete();
 
         Storage::disk('public')->delete($post->image);

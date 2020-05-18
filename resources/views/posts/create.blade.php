@@ -80,18 +80,18 @@
 
             </div>
 
-            {{-- @if ($tags->count()>0) --}}
+            @if ($tags->count()>0)
             <div class="form-group">
                 <label for="tags">Tags</label>
                 <select name="tags[]" id="tags" class="form-control tag-selector" multiple>
 
-                    {{-- @foreach ($tags as $tag)
+                    @foreach ($tags as $tag)
                     <option value="{{ $tag->id}}">{{$tag->name}}</option>
-                    @endforeach --}}
+                    @endforeach
 
                 </select>
             </div>
-            {{-- @endif --}}
+            @endif
 
             <div class="form-group mt-5">
                 <button type="submit" class="btn btn-success">Create Post</button>

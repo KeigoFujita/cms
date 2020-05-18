@@ -85,18 +85,24 @@
 
             </div>
 
-            {{-- @if ($tags->count()>0) --}}
+            @if ($tags->count()>0)
             <div class="form-group">
                 <label for="tags">Tags</label>
                 <select name="tags[]" id="tags" class="form-control tag-selector" multiple>
 
-                    {{-- @foreach ($tags as $tag)
-                    <option value="{{ $tag->id}}">{{$tag->name}}</option>
-                    @endforeach --}}
+                    @foreach ($tags as $tag)
+                    <option value="{{ $tag->id}}" @if ( $post->hasTag($tag->id) )
+
+                        selected
+
+                        @endif
+
+                        >{{$tag->name}}</option>
+                    @endforeach
 
                 </select>
             </div>
-            {{-- @endif --}}
+            @endif
 
             <div class="form-group mt-5">
                 <button type="submit" class="btn btn-success">Update Post</button>
