@@ -17,12 +17,15 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/blog-home.css') }}">
     @yield('custom-css')
+
+
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -36,16 +39,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        {{-- <li class="nav-item ml-4">
-                            <a href="#" class="nav-link">Home</a>
-                        </li> --}}
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                        <li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
@@ -54,7 +55,6 @@
                         </li>
                         @endif
                         @else
-
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -63,9 +63,8 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-
-                                <a class="dropdown-item" href="/">
-                                    Home
+                                <a class="dropdown-item" href="{{ route('posts.index') }}">
+                                    Manage
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -84,29 +83,8 @@
             </div>
         </nav>
 
-        <main class="py-5">
-
-            @guest
-
-            <div class="container">
-                @yield('content')
-            </div>
-
-            @else
-
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-3">
-                        @include('includes.sidebar')
-                    </div>
-
-                    <div class="col-md-9">
-                        @yield('content')
-                    </div>
-                </div>
-            </div>
-
-            @endguest
+        <main>
+            @yield('content')
         </main>
     </div>
     <!-- Scripts -->
