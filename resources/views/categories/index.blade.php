@@ -32,6 +32,7 @@
         <table class="table table-bordered table-hover">
             <thead>
                 <th>Category</th>
+                <th>Posts</th>
                 <th width="20%">Actions</th>
             </thead>
             <tbody>
@@ -39,6 +40,7 @@
                 @foreach ($categories as $category)
                 <tr>
                     <td>{{ $category->name}}</td>
+                    <td>{{ $category->posts->count()}}</td>
                     <td>
                         <a role="button" href="{{ route('categories.edit',$category) }}" class="btn btn-sm"
                             style="background-color:#ff971d;color:white;">Edit</a>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Post;
@@ -28,27 +29,30 @@ class PostsController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create', [
+            'categories' => $categories
+        ]);
     }
 
 
     public function store(PostStoreRequest $request)
     {
 
+        //saves the image uploaded and get the path
         $image = $request->file('image')->store('images', 'public');
 
-        //dd($image);
 
-        // dd($request->all());
-
+        //crate the post
         $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
             'image' => $image,
-            // 'published_at' => $request->published_at,
-            // 'category_id' => $request->category
+            'category_id' => $request->category
         ]);
+
+
 
         // if ($request->tags) {
         //     $post->tags()->attach($request->tags);
@@ -61,11 +65,13 @@ class PostsController extends Controller
 
     public function edit($id)
     {
+        $categories = Category::all();
         $post = Post::find($id);
         return view(
             'posts.edit',
             [
-                'post' => $post
+                'post' => $post,
+                'categories' => $categories
             ]
         );
     }
@@ -85,6 +91,7 @@ class PostsController extends Controller
         $post->title = $request->title;
         $post->description = $request->description;
         $post->content = $request->content;
+        $post->category_id = $request->category;
         $post->save();
 
         session()->flash('success', 'Post updated successfully.');

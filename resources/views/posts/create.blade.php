@@ -72,9 +72,9 @@
                 <label for="category">Category</label>
                 <div>
                     <select name="category" class=" form-control">
-                        {{-- @foreach ($categories as $category )
+                        @foreach ($categories as $category )
                         <option value="{{ $category->id}}">{{ $category->name}}</option>
-                        @endforeach --}}
+                        @endforeach
                     </select>
                 </div>
 

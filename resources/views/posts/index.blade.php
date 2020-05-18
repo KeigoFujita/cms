@@ -43,7 +43,7 @@
                     <td><img src="{{ asset('storage/'.$post->image) }}" width="100px" alt=""></td>
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->description}}</td>
-                    <td></td>
+                    <td>{{ $post->category->name }}</td>
                     <td>
                         <a role="button" href="{{ route('posts.edit',$post->id) }}" class="btn btn-sm"
                             style="background-color:#ff971d;color:white;">Edit</a>
