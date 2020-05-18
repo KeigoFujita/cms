@@ -84,7 +84,33 @@
         </nav>
 
         <main>
-            @yield('content')
+
+            <!-- Page Content -->
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        @yield('content')
+                    </div>
+                    <div class="col-md-4">
+                        @include('includes.blog.sidebar')
+                    </div>
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+
+            <!-- Footer -->
+            <footer class="py-5 bg-dark">
+                <div class="container">
+                    <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+                </div>
+                <!-- /.container -->
+            </footer>
+
+
+
         </main>
     </div>
     <!-- Scripts -->

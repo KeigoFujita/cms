@@ -126,4 +126,13 @@ class PostsController extends Controller
         session()->flash('success', 'Post deleted successfully.');
         return redirect(route('posts.index'));
     }
+
+    public function view($id)
+    {
+
+        $post = Post::find($id);
+        return view('posts.view', [
+            'post' =>  $post
+        ]);
+    }
 }

@@ -31,4 +31,10 @@ class Post extends Model
     {
         return Str::of(substr($this->description, 0, 100))->trim() . "...";
     }
+
+
+    public function present_created_at()
+    {
+        return $this->created_at->format('F d, Y \a\t h:i A');
+    }
 }

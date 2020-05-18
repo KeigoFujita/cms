@@ -46,7 +46,7 @@
             <div class="form-group">
                 <label for="content">Content</label>
                 <input id="content_id" type="hidden" name="content" value="{{ $post->content }}">
-                <trix-editor input="content_id" style="height:300px" placeholder="Type something amazing...">
+                <trix-editor input="content_id" style="min-height:300px" placeholder="Type something amazing...">
                 </trix-editor>
             </div>
 

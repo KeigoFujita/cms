@@ -20,6 +20,7 @@ Auth::routes();
 
 Route::get('/posts', 'PostsController@index')->name('posts.index');
 Route::get('/posts/create', 'PostsController@create')->name('posts.create');
+Route::get('/posts/view/{id}', 'PostsController@view')->name('posts.view');
 Route::post('/posts/store', 'PostsController@store')->name('posts.store');
 Route::get('/posts/edit/{id}', 'PostsController@edit')->name('posts.edit');
 Route::put('/posts/update/{id}', 'PostsController@update')->name('posts.update');
