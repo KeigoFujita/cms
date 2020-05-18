@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group">
-                <img src="" alt="" class="img-fluid">
+                <img src="{{ asset('storage/'.$post->image) }}" alt="" class="img-fluid">
             </div>
 
             <div class="form-group">
