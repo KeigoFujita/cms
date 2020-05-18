@@ -30,3 +30,4 @@ Route::delete('/posts/delete/{id}', 'PostsController@delete')->name('posts.delet
 
 
 Route::resource('categories', 'CategoryController');
+Route::resource('tags', 'TagController');
