@@ -3,10 +3,7 @@
         <a href="{{ route('posts.index') }}">Posts</a>
     </li>
     <li class="list-group-item">
-        <a href="#">Trashed Posts</a>
-    </li>
-    <li class="list-group-item">
-        <a href="#">Categories</a>
+        <a href="{{ route('categories.index') }}">Categories</a>
     </li>
     <li class="list-group-item">
         <a href="#">Tags</a>
