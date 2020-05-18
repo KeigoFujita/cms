@@ -2,14 +2,18 @@
 <div class="card my-4">
     <h5 class="card-header">Search</h5>
     <div class="card-body">
-        <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-        </div>
+        <form action="{{ route('posts.search') }}" method="POST">
+            @csrf
+            <div class="input-group">
+                <input type="text" class="form-control" name="search"
+                    value="@if(request()->has('search')){{ request()->search }}@endif">
+                <span class="input-group-btn ml-1">
+                    <button class="btn btn-success" type="submit">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </span>
+            </div>
+        </form>
     </div>
 </div>
 
@@ -24,7 +28,7 @@
                 <ul class="list-unstyled mb-0">
                     @foreach ($categories as $category)
                     <li>
-                        <a href="#">{{ $category->name }}</a>
+                        <a href="{{ route('home.filter_category',$category) }}">{{ $category->name }}</a>
                     </li>
 
                     @if ($loop->index == 4)
@@ -41,7 +45,7 @@
                     @foreach ($categories as $category)
                     @if ($loop->index > 4)
                     <li>
-                        <a href="#">{{ $category->name }}</a>
+                        <a href="{{ route('home.filter_category',$category) }}">{{ $category->name }}</a>
                     </li>
                     @endif
                     @endforeach
@@ -62,7 +66,7 @@
                 <ul class="list-unstyled mb-0">
                     @foreach ($tags as $tag)
                     <li>
-                        <a href="#">{{ $tag->name }}</a>
+                        <a href="{{ route('home.filter_tag',$tag) }}">{{ $tag->name }}</a>
                     </li>
 
                     @if ($loop->index == 4)

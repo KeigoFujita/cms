@@ -6,16 +6,12 @@
 
 
 @if ($posts->count() == 0)
-
-<div class="py-5">
-    <p style="font-size:2rem;" class="mb-0">No posts for now</p>
-    <p>Check back later</p>
-</div>
-
+<h1 class="my-4">No posts for {{ $tag->name }}</h1>
 @else
-<h1 class="my-4">Recent Posts</h1>
-
+<h1 class="my-4">{{ $posts->total() }} posts for {{ $tag->name }}</h1>
+@endif
 <!-- Blog Post -->
+
 @foreach ($posts as $post)
 <div class="card mb-4">
     <img class="card-img-top" src="{{ asset('storage/'.$post->image) }}" alt="Card image cap">
@@ -32,5 +28,4 @@
 @endforeach
 
 {{ $posts->links() }}
-@endif
 @endsection
