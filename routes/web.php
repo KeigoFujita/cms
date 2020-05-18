@@ -20,4 +20,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/posts', 'PostsController@index')->name('posts');
+Route::get('/posts', 'PostsController@index')->name('posts.index');
+Route::get('/posts/create', 'PostsController@create')->name('posts.create');
+Route::post('/posts/store', 'PostsController@store')->name('posts.store');
+Route::get('/posts/edit/{id}', 'PostsController@edit')->name('posts.edit');
+Route::put('/posts/update/{id}', 'PostsController@update')->name('posts.update');
+Route::delete('/posts/delete/{id}', 'PostsController@delete')->name('posts.delete');
