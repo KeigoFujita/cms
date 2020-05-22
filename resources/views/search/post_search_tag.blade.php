@@ -1,10 +1,12 @@
 @extends('layouts.blog')
 
+
+@section('search-route')
+{{ route('home.filter_tag',$tag) }}
+@endsection
 @section('content')
 
 <!-- Blog Entries Column -->
-
-
 @if ($posts->count() == 0)
 <h1 class="my-4">No posts for {{ $tag->name }}</h1>
 @else
@@ -27,5 +29,5 @@
 
 @endforeach
 
-{{ $posts->links() }}
+{{ $posts->appends(['search'=>request()->query('search')])->links() }}
 @endsection

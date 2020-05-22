@@ -29,7 +29,11 @@ class Post extends Model
 
     public function present_description()
     {
-        return Str::of(substr($this->description, 0, 100))->trim() . "...";
+        if (strlen($this->description) > 100) {
+            return  Str::of(substr($this->description, 0, 100))->trim() . "...";
+        }
+
+        return $this->description;
     }
 
 

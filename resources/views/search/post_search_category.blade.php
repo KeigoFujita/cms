@@ -1,5 +1,9 @@
 @extends('layouts.blog')
 
+@section('search-route')
+{{ route('home.filter_category',$category) }}
+@endsection
+
 @section('content')
 
 <!-- Blog Entries Column -->
@@ -27,5 +31,5 @@
 
 @endforeach
 
-{{ $posts->links() }}
+{{ $posts->appends(['search'=>request()->query('search')])->links() }}
 @endsection

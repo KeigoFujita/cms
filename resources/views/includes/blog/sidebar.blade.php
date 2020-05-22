@@ -2,8 +2,7 @@
 <div class="card my-4">
     <h5 class="card-header">Search</h5>
     <div class="card-body">
-        <form action="{{ route('posts.search') }}" method="POST">
-            @csrf
+        <form action="@yield('search-route')" method="GET">
             <div class="input-group">
                 <input type="text" class="form-control" name="search"
                     value="@if(request()->has('search')){{ request()->search }}@endif">
