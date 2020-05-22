@@ -33,3 +33,8 @@ Route::delete('/posts/delete/{id}', 'PostsController@delete')->name('posts.delet
 
 Route::resource('categories', 'CategoryController');
 Route::resource('tags', 'TagController');
+
+Route::get('/users', 'UserController@index')->name('users.index');
+Route::get('/users/{user}', 'UserController@view')->name('users.view');
+Route::get('/users/{user}/makeAdmin', 'UserController@makeAdmin')->name('users.makeAdmin');
+Route::put('/users/{user}/update', 'UserController@update')->name('users.update');

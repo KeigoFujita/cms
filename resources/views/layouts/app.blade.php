@@ -17,6 +17,21 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .avatar-sm {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+
+        .avatar p {
+            margin-top: -2px;
+            font-size: 6rem;
+            color: white;
+        }
+
+    </style>
     @yield('custom-css')
 </head>
 
@@ -54,6 +69,18 @@
                         </li>
                         @endif
                         @else
+
+
+
+                        @if (!isset(Auth::user()->image))
+                        <div class="avatar-sm shadow mr-1 " style="background-color:{{Auth::user()->rand_color}}">
+                            <p class="text-center py-" style="font-size: 1.5rem; padding-top:2px; color:white;">
+                                {{Auth::user()->initial}}
+                            </p>
+                        </div>
+                        @else
+                        <img src="{{ asset('storage/'. Auth::user()->image) }}" alt="" class="nav-item avatar-sm mr-1">
+                        @endif
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

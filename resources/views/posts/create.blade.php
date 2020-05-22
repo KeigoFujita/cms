@@ -45,12 +45,12 @@
             <div class="form-group">
                 <label for="content">Content</label>
                 <input id="content_id" type="hidden" name="content">
-                <trix-editor input="content_id" style="height:300px" placeholder="Type something amazing...">
+                <trix-editor input="content_id" style="min-height:300px" placeholder="Type something amazing...">
                 </trix-editor>
             </div>
 
             <div class="form-group">
-                <img src="" alt="" class="img-fluid">
+                <img src="" alt="" class="img-fluid" id="post-image">
             </div>
 
             <div class="form-group">
@@ -111,7 +111,7 @@
         try {
             var fileName = e.target.files[0].name;
             $('.custom-file-label').html(fileName);
-            $('img').attr('src', URL.createObjectURL(event.target.files[0]));
+            $('#post-image').attr('src', URL.createObjectURL(event.target.files[0]));
 
         } catch (error) {
             console.log(error.message);

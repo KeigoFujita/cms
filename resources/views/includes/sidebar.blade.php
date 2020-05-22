@@ -9,7 +9,14 @@
         <a href="{{ route('tags.index') }}">Tags</a>
     </li>
 
+    @if (Auth::user()->role == 'admin')
     <li class="list-group-item">
-        <a href="#">Users</a>
+        <a href="{{ route('users.index') }}">Users</a>
     </li>
+    @else
+    <li class="list-group-item">
+        <a href="{{ route('users.view',Auth::user()->id) }}">My Account</a>
+    </li>
+    @endif
+
 </ul>

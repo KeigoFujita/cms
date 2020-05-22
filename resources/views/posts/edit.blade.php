@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group">
-                <img src="{{ asset('storage/'.$post->image) }}" alt="" class="img-fluid">
+                <img src="{{ asset('storage/'.$post->image) }}" alt="" class="img-fluid" id="post-image">
             </div>
 
             <div class="form-group">
@@ -122,7 +122,7 @@
         try {
             var fileName = e.target.files[0].name;
             $('.custom-file-label').html(fileName);
-            $('img').attr('src', URL.createObjectURL(event.target.files[0]));
+            $('#post-image').attr('src', URL.createObjectURL(event.target.files[0]));
 
         } catch (error) {
             console.log(error.message);
