@@ -12,6 +12,15 @@
 </div>
 @endif
 
+@if (session()->has('error'))
+<div class="alert alert-danger alert-dismissible fade show">
+    {{ session()-> get('error')}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
 <div class="card">
     <div class="card-header" style="height:50px">Posts
         <a href="{{ route('posts.create') }}" class="btn btn-success btn-sm" style="float:right">Create Post</a>

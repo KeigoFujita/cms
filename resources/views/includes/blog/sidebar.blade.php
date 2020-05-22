@@ -82,7 +82,7 @@
                     @foreach ($tags as $tag)
                     @if ($loop->index > 4)
                     <li>
-                        <a href="#">{{ $tag->name }}</a>
+                        <a href="{{ route('home.filter_tag',$tag) }}">{{ $tag->name }}</a>
                     </li>
                     @endif
                     @endforeach

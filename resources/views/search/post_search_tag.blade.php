@@ -8,9 +8,21 @@
 
 <!-- Blog Entries Column -->
 @if ($posts->count() == 0)
+@if (request()->has('search')&& !empty(request()->query('search')))
+<div class="py-5">
+    <p style="font-size:2rem;" class="mb-0">No posts for query <strong>'{{ request()->query('search') }}'</strong></p>
+    <p>Try other keyword</p>
+</div>
+@else
 <h1 class="my-4">No posts for {{ $tag->name }}</h1>
+@endif
+
+@else
+@if (request()->has('search')&& !empty(request()->query('search')))
+<h1 class="my-4">Posts with <strong>'{{ request()->query('search') }}'</strong> keyword</h1>
 @else
 <h1 class="my-4">{{ $posts->total() }} posts for {{ $tag->name }}</h1>
+@endif
 @endif
 <!-- Blog Post -->
 

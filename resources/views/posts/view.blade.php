@@ -1,5 +1,10 @@
 @extends('layouts.blog')
 
+@section('search-route')
+{{ route('home') }}
+@endsection
+@section('content')
+
 @section('content')
 
 <!-- Title -->

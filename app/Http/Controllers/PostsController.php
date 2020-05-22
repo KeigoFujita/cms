@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Storage;
 class PostsController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(['verify_categories_count'])->only('create', 'store');
+        $this->middleware(['verify_tags_count'])->only('create', 'store');
+    }
+
     public function index()
     {
 
@@ -130,9 +136,28 @@ class PostsController extends Controller
     public function view($id)
     {
 
+        //gets all the categories and then sort them by the number of posts related to them
+        //gets only the top 10
+        $categories = Category::all()->sortByDesc(
+            function ($category) {
+                return $category->posts->count();
+            }
+        )->take(10);
+
+
+        //gets the tags and then sort them by the number of posts related to them
+        //gets only the top 10
+        $tags = Tag::all()->sortByDesc(
+            function ($tag) {
+                return $tag->posts->count();
+            }
+        )->take(10);
+
         $post = Post::find($id);
         return view('posts.view', [
-            'post' =>  $post
+            'post' =>  $post,
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 }
