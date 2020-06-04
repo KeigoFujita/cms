@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//contains all the routes for the authentication (login, register and etc.)
 Auth::routes();
 
+//The home page of the cms
 Route::get('/', 'HomeController@index')->name('home');
+
+//For searching
 Route::post('/posts/search', 'HomeController@search')->name('posts.search');
 Route::get('/posts/category/{category}', 'HomeController@filter_by_category')->name('home.filter_category');
 Route::get('/posts/tag/{tag}', 'HomeController@filter_by_tag')->name('home.filter_tag');
@@ -37,7 +42,6 @@ Route::middleware('auth')->group(function () {
 
     //Tags
     Route::resource('tags', 'TagController');
-
 
     //Users
     Route::get('/users', 'UserController@index')->name('users.index');

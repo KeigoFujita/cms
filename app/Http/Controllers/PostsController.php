@@ -53,7 +53,7 @@ class PostsController extends Controller
         $image = $request->file('image')->store('images', 'public');
 
 
-        //crate the post
+        //create the post
         $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
